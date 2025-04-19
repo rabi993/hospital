@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'django_filters',
     'patient',
     'doctor',
-    'specialization',
-    'visitHour',
     'appointment',
     
 

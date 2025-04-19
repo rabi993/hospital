@@ -18,8 +18,13 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from rest_framework.routers import DefaultRouter
+# from . views import UserViewSet, send_email
+from . views import UserViewSet
+router = DefaultRouter()
+router.register('users', UserViewSet)
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('patient/',include('patient.urls')),
     path('doctor/',include('doctor.urls')),

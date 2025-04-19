@@ -1,7 +1,10 @@
 from rest_framework import serializers
 from . import models
 class DoctorSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(many= False)
+    # user = serializers.StringRelatedField(many= False)
+    # designation = serializers.StringRelatedField(many= True)
+    # specialization = serializers.StringRelatedField(many= True)
+    # available_time = serializers.StringRelatedField(many= True)
     
     
     class Meta:

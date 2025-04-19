@@ -1,10 +1,4 @@
-# from django.contrib import admin
-# from . import models
-# # Register your models here.
-# class PatientAdmin(admin.ModelAdmin):
-#     list_display = [ 'email', 'mobile_no', 'image']
 
-# admin.site.register(models.Patient, PatientAdmin)
 
 from django.contrib import admin
 from .models import Patient

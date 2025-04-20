@@ -23,10 +23,10 @@ class PatientViewset(viewsets.ModelViewSet):
     queryset = models.Patient.objects.all()
     serializer_class = serializers.PatientSerializer
     
+
+        
 class UserRegistrationApiView(APIView):
     serializer_class = serializers.RegistrationSerializer
-
- 
     
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -39,8 +39,7 @@ class UserRegistrationApiView(APIView):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             print("uid ", uid)
             
-            # confirm_link = f"https://club-1-6len.onrender.com/people/active/{uid}/{token}"
-            confirm_link = f"https://club-wine.vercel.app/people/active/{uid}/{token}"
+            confirm_link = f"http://127.0.0.1:8000/patient/active/{uid}/{token}"
             
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
@@ -62,9 +61,11 @@ def activate(request, uid64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('https://rabi993.github.io/umsa_frontend/login.html')
+        # return redirect('https://rabi993.github.io/flowers-world-frontend-with-OnrenderAPI/login.html')
+        return redirect('http://127.0.0.1:8000/patient/login/')
     else:
-        return redirect('https://rabi993.github.io/umsa_frontend/registration.html')
+        # return redirect('https://rabi993.github.io/flowers-world-frontend-with-OnrenderAPI/registration.html')
+        return redirect('http://127.0.0.1:8000/patient/register/')
     
 
 class UserLoginApiView(APIView):
@@ -92,7 +93,7 @@ class UserLogoutView(APIView):
         logout(request)
          # return redirect('login')
         return Response({'success' : "logout successful"})
-        
+
 
 
 from rest_framework.permissions import IsAuthenticated

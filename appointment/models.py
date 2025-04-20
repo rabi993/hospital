@@ -14,6 +14,7 @@ class Appointment(models.Model):
     doctor= models.ForeignKey(Doctor, on_delete= models.CASCADE)
     appointment_Status = models.CharField(choices=APPOINTMENT_STATUS, max_length=15, default='Pending')
     symptom = models.TextField()
+    phone_no = models.CharField(max_length=12, null=True, blank=True, default="0000000000")
     time = models.ForeignKey(AvailableTime, on_delete= models.CASCADE)
     payment = models.BooleanField(default=False)
     cancel = models.BooleanField(default=False)

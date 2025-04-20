@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from . import models
 from . import serializers
-
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.tokens import default_token_generator
@@ -20,6 +20,8 @@ from django.shortcuts import redirect
 
 # Create your views here.
 class PatientViewset(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     queryset = models.Patient.objects.all()
     serializer_class = serializers.PatientSerializer
     
@@ -96,7 +98,7 @@ class UserLogoutView(APIView):
 
 
 
-from rest_framework.permissions import IsAuthenticated
+
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
